@@ -1,0 +1,8 @@
+Package: meminfo
+Version: INSTALL_VERSION
+Section: admin
+Priority: optional
+Architecture: INSTALL_ARCH
+Installed-Size: INSTALL_SIZE
+Maintainer: Michal Skrha <michal@skrha.cz>
+Description: Simple tool to show memory usage reading directly from /proc/meminfo.

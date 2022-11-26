@@ -1,0 +1,4 @@
+#! /bin/bash
+
+chown root:root /usr/bin/meminfo
+chmod 755 /usr/bin/meminfo

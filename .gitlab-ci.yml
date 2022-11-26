@@ -1,0 +1,40 @@
+stages:
+  - package
+
+amd64:
+ stage: package
+ tags:
+  - golang
+  - debian
+ only:
+  - tags
+ script:
+  - export GOROOT='/opt/go'
+  - export PATH="${PATH}:${GOROOT}/bin"
+  - export GOPATH='/opt/.go'
+  - export VERSION=${CI_BUILD_TAG}
+  - export ARCH=amd64
+  - export PKG=meminfo_${VERSION}_${ARCH}
+  - cd source
+  - make deb
+  - /usr/sbin/reprepro-uploader ${PKG}.deb wheezy jessie stretch buster bullseye
+  - rm -fv ${PKG}.deb
+
+armhf:
+ stage: package
+ tags:
+  - golang
+  - debian
+ only:
+  - tags
+ script:
+  - export GOROOT='/opt/go'
+  - export PATH="${PATH}:${GOROOT}/bin"
+  - export GOPATH='/opt/.go'
+  - export VERSION=${CI_BUILD_TAG}
+  - export ARCH=armhf
+  - export PKG=meminfo_${VERSION}_${ARCH}
+  - cd source
+  - make deb
+  - /usr/sbin/reprepro-uploader ${PKG}.deb wheezy jessie stretch buster bullseye
+  - rm -fv ${PKG}.deb
